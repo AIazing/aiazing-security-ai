@@ -60,7 +60,7 @@ The output is evaluator-side lab-control evidence, not a complete assessment rep
 Run integration tests:
 
 ~~~sh
-python3 -m unittest discover -v
+python3 -m unittest tests.test_invoice_lab -v
 ~~~
 
 ## Reset and stop
@@ -72,6 +72,8 @@ In the terminal running the interactive lab:
 - End-of-input also stops the lab.
 
 Reset only between assessment runs, not while requests are active. Restarting the command also restores a fresh seed.
+
+Reset and shutdown also revoke any assessment grants issued through the trusted lab adapter. See the [assessment engine](../../docs/assessment-engine.md) for the full policy-gated report workflow.
 
 ## Boundary
 

@@ -11,6 +11,7 @@ class InvoiceLab:
         self.servers = {}
         self.threads = []
         self.closed = False
+        self.authorization_events = []
         try:
             self.servers["vulnerable"] = LabServer(vulnerable_port, vulnerable=True)
             self.servers["fixed"] = LabServer(fixed_port, vulnerable=False)
@@ -42,12 +43,24 @@ class InvoiceLab:
         if self.closed:
             raise RuntimeError("Lab is closed")
         # Call only between assessment runs. Active requests must be quiescent.
+        self._revoke_authorizations()
         for server in self.servers.values():
             server.store.reset()
+
+    def register_authorization(self, event):
+        if self.closed:
+            raise RuntimeError("Lab is closed")
+        self.authorization_events.append(event)
+
+    def _revoke_authorizations(self):
+        for event in self.authorization_events:
+            event.set()
+        self.authorization_events.clear()
 
     def close(self):
         if self.closed:
             return
+        self._revoke_authorizations()
         for index, server in enumerate(self.servers.values()):
             if index < len(self.threads):
                 server.shutdown()

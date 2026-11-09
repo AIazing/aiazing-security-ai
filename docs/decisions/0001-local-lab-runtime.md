@@ -28,11 +28,11 @@ The local boundary is loopback binding, not container, operating-system, or tena
 
 The Python development HTTP server, fixture authentication, and in-memory sessions are not a production service architecture. No arbitrary URL scanning, browser automation, model inference, assessment policy engine, or hosted network enforcement is implemented by this decision.
 
-Evidence is currently written as local lab-control JSON. It is not yet the assessment-result contract. Production storage and the scanning/browser/inference stacks remain undecided.
+The fixture verifier writes local lab-control JSON. A separate [assessment engine](0002-local-assessment-engine.md) now adds policy enforcement and assessment-contract output. Production storage and the browser/inference stacks remain undecided.
 
 ## Verification
 
-- python3 -m unittest discover -v
+- python3 -m unittest tests.test_invoice_lab -v
 - python3 -m labs.invoice.verify --output artifacts/invoice-lab-controls.json
 
 The second command starts ephemeral loopback servers, verifies both variants, resets and repeats, then closes listeners before exiting. It returns a nonzero exit code if a control fails.

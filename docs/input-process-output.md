@@ -1,6 +1,6 @@
 # Input, process, and output
 
-This document defines the proposed version 1 assessment contract. It is a specification, not an implemented scanner or trained model.
+This document defines the version 1 assessment contract. The [local HTTP engine](assessment-engine.md) implements the controlled invoice-lab slice, including validation, verification, reporting, and incomplete/rejected states. Public website scanning, browser automation, and model inference are not implemented.
 
 ## 1. Input: what the customer supplies
 

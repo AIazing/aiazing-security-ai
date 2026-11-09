@@ -6,9 +6,9 @@ Build a specialized security transformer adaptation on an existing open-weight f
 
 The first release accepts an authorized website/API URL, investigates supported behaviors, verifies findings, recommends fixes, and exports results. Its initial research environment is isolated labs.
 
-Completed: product definition, architecture, input/process/output schemas and examples, evaluation strategy, illustrative dashboard, and the first executable local invoice lab with independent controls.
+Completed: product definition, architecture, input/process/output schemas and examples, evaluation strategy, illustrative dashboard, local invoice lab, and the policy-gated HTTP assessment slice with independent verification and validated JSON exports.
 
-Not implemented: the general scanning worker, assessment policy engine, contract-valid assessment reporting, model inference/training, production web application, or hosted infrastructure. The implemented invoice verifier is evaluator-side lab logic, not a general vulnerability verifier.
+Not implemented: general crawling, browser automation, model inference/training, production web application, hosted authorization/storage, or OS-level worker isolation. The implemented verifier covers the controlled invoice scenario, not arbitrary vulnerabilities.
 
 This is a dependency-based plan, not a calendar commitment. Confirm hardware, compute budget, available engineering capacity, and security-review capacity before assigning dates or purchasing infrastructure.
 
@@ -44,6 +44,12 @@ LAB-04 currently means loopback-only listeners, same-origin browser requests, no
 Do not add multiple public lab integrations yet. The first scenario establishes the pattern. Before calling it complete, demonstrate the controls against both versions and retain reproducible artifacts.
 
 ## Phase 2: execution and verification
+
+The HTTP lab slice of SYS-01 through SYS-06 is implemented; see [engine instructions](assessment-engine.md) and [decision 0002](decisions/0002-local-assessment-engine.md). It validates requests and reports, enforces registered origins/actions and budgets, brokers credentials, collects sanitized observations, and independently verifies the invoice scenario.
+
+SYS-07 has HTTP tests for scope, grants/revocation, DNS avoidance, redirects, limits, cancellation, response handling, and target-supplied text remaining inert. Browser subrequests, model-directed adversarial behavior, preemptive worker teardown, and general network/OS isolation are still pending. Do not mark those complete based on the HTTP fixture.
+
+Verification: the full 40-test suite passed. The documented CLI produced completed, schema-valid reports with one confirmed finding for the vulnerable fixture and none for the fixed fixture (10 requests each). A separate one-request run exported partial coverage and returned exit code 1 as intended.
 
 | ID | Work item | Deliverable and acceptance |
 | --- | --- | --- |
@@ -125,7 +131,7 @@ LAB-01 through LAB-05 and SYS-01 are complete for the local development boundary
 5. Reset and teardown are repeatable.
 6. The runtime decision and verification command are documented.
 
-No trained model, public scanning, or paid compute is needed for this iteration. The next iteration implements the policy-gated collector, independent verifier, and JSON result.
+No trained model, public scanning, or paid compute is needed for this iteration. The subsequent HTTP iteration is now implemented: policy-gated collection, independent verification, and validated JSON output. The next model increment defines observation/action contracts and a self-hosted adapter.
 
 ## Decisions before dependent work
 

@@ -2,7 +2,21 @@
 
 An open-source project to build a specialized AI model and assessment system that investigates authorized websites and APIs, verifies security findings, explains fixes, and exports reports.
 
-**Status: the first local research fixture and its independent control checks are implemented. There is no trained model, general website scanner, or measured model benchmark yet.**
+**Status: the local invoice lab and policy-gated HTTP assessment engine are implemented, including verified findings, fix guidance, and contract-valid JSON reports. There is no trained model, general website scanner, or measured model benchmark yet.**
+
+## Run a local assessment
+
+With Python 3.9+, from the repository root:
+
+~~~sh
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -m security_ai --output artifacts/assessment-demo
+~~~
+
+The command starts its own vulnerable/fixed lab instances, assesses them, exports sanitized reports and evidence, and shuts them down. The vulnerable fixture produces one confirmed finding; the fixed fixture produces none for the tested scenario. Each full run makes 10 target requests.
+
+See [assessment engine instructions](docs/assessment-engine.md) for scope, limits, failure states, and output. No model API, model download, GPU, or cloud service is required. The schema validator is the only direct external package.
 
 ## Run the first milestone
 
@@ -18,7 +32,7 @@ To run independent controls and save sanitized evaluator evidence:
 
 ~~~sh
 python3 -m labs.invoice.verify --output artifacts/invoice-lab-controls.json
-python3 -m unittest discover -v
+python3 -m unittest tests.test_invoice_lab -v
 ~~~
 
 The verifier starts its own temporary-port lab, checks both versions, resets and repeats, then shuts down. Its JSON is lab-control evidence, not a complete assessment report or AI discovery result.
@@ -65,7 +79,9 @@ Use our own isolated deployments, not the projects' public demos. Pin each deplo
 - [Implementation roadmap](docs/roadmap.md)
 - [Delivery work plan and task breakdown](docs/work-plan.md)
 - [Local invoice lab](labs/invoice/README.md)
+- [Local assessment engine](docs/assessment-engine.md)
 - [First runtime decision](docs/decisions/0001-local-lab-runtime.md)
+- [Assessment engine decision](docs/decisions/0002-local-assessment-engine.md)
 - [Proposed lab catalog](benchmarks/catalog.json)
 - [Finding schema](schemas/finding.schema.json)
 - [Assessment request schema](schemas/assessment-request.schema.json)
@@ -74,7 +90,7 @@ Use our own isolated deployments, not the projects' public demos. Pin each deplo
 - [Illustrative finding](examples/finding.json)
 - [Interface concept](design/security-workspace.html)
 
-The interface concept contains fictional findings. It does not perform assessments. The separate local invoice lab is executable.
+The interface concept contains fictional findings. It does not perform assessments. The separate local invoice lab and HTTP assessment engine are executable.
 
 ## Open source and paid service
 
@@ -86,7 +102,9 @@ The software license does not grant rights to third-party model weights, dataset
 
 The local invoice lab implements two synthetic accounts, one owned invoice, vulnerable/fixed detail access, deterministic reset, and independent controls. It binds only to loopback and exposes no reset or ground-truth HTTP endpoints. It is not an operating-system sandbox.
 
-Next: implement the policy-gated assessment collector and contract-valid JSON reports before connecting model inference or training.
+The HTTP assessment engine now validates authorized lab inputs, enforces exact scope and budgets, collects sanitized evidence, independently verifies the invoice scenario, and exports JSON findings and fix guidance. Run .venv/bin/python -m unittest discover -v after setup to verify the full suite.
+
+Next: define the model observation/action contract and self-hosted inference adapter before connecting a model-driven loop. Browser automation and public-target assessment remain later work.
 
 No model provider, cloud account, API key, or paid compute is required to run this milestone. There are currently no commands for arbitrary website scanning or model training.
 

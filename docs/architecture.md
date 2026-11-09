@@ -50,4 +50,6 @@ Where possible, use an evaluator-only fixture or state inspection to establish g
 
 ## Technology decisions
 
-Language, database, queue, browser runtime, inference stack, and model provider are pending. Choose them after the first scenario and deployment requirements are specified. All model integrations use the same observation/action/finding contracts.
+The local HTTP assessment slice uses Python, jsonschema contract validation, literal-IP HTTP tools, an in-process lab grant/credential registry, and local JSON artifacts. See [decision 0002](decisions/0002-local-assessment-engine.md) and [engine instructions](assessment-engine.md).
+
+The production database/queue, browser runtime, inference stack, and base model remain pending. All future model integrations must use the same policy/verification boundaries.

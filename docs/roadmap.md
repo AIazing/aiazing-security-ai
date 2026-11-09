@@ -14,17 +14,19 @@ The [delivery work plan](work-plan.md) breaks this roadmap into task IDs, depend
 
 - [x] Build a loopback-only vulnerable/fixed access-control fixture with two test accounts.
 - [x] Add deterministic seed/reset and evaluator-only ground truth.
-- [ ] Define structured tool requests and an enforced lab scope.
-- [ ] Add browser/HTTP evidence collection and an independent verifier.
-- [ ] Export a validated JSON finding with redacted evidence.
+- [x] Define structured HTTP tool operations and an enforced lab scope.
+- [x] Add HTTP evidence collection and an independent invoice verifier.
+- [x] Export validated JSON findings with redacted evidence and fix guidance.
 
-The local fixture and its scripted control verifier are available; the general collector, policy engine, and assessment-contract export remain pending. See the [lab instructions](../labs/invoice/README.md). Loopback development isolation is implemented; OS/container isolation is not.
+The local HTTP slice is complete: fixture, input validation, grant/scope enforcement, credential handling, deterministic collection, independent verification, and contract-valid reports. See the [engine instructions](assessment-engine.md). General crawling, browser automation, and OS/container isolation are not implemented.
 
 Acceptance: distinguish the vulnerable case from safe and functional controls with reproducible artifacts, then add the policy-gated collector and report contract. No broad scanner or model training is required for this milestone.
 
 ## Milestone 2: baseline system
 
+- [ ] Define the model observation/action contract and self-hosted inference adapter.
 - [ ] Integrate an unchanged model through a provider-neutral interface.
+- [ ] Add policy-enforced browser collection and its boundary tests.
 - [ ] Add a small set of pinned lab scenarios from the catalog.
 - [ ] Measure precision, recall, abstention, cost, and boundary enforcement.
 - [ ] Build the web setup/findings flow and human-readable report export.
