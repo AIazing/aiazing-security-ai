@@ -1,0 +1,1 @@
+"""Research fixture integration tests."""

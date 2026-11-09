@@ -10,4 +10,4 @@ Start with the first milestone in [docs/roadmap.md](docs/roadmap.md). Keep chang
 - Never silently reuse final evaluation examples for training.
 - Use isolated applications with synthetic data during development.
 
-The repository is at the design stage. It does not yet specify a runtime stack or contribution test command.
+The first local fixture uses Python 3.9+ with no external runtime packages. Run python3 -m unittest discover -v for integration tests, and python3 -m labs.invoice.verify for reproducible controls. Tests bind temporary loopback ports. See [decision 0001](docs/decisions/0001-local-lab-runtime.md) for the runtime scope and limitations.

@@ -12,13 +12,15 @@ The [delivery work plan](work-plan.md) breaks this roadmap into task IDs, depend
 
 ## Milestone 1: one reproducible experiment
 
-- [ ] Build an isolated vulnerable/fixed access-control fixture with two test accounts.
-- [ ] Add deterministic seed/reset and evaluator-only ground truth.
+- [x] Build a loopback-only vulnerable/fixed access-control fixture with two test accounts.
+- [x] Add deterministic seed/reset and evaluator-only ground truth.
 - [ ] Define structured tool requests and an enforced lab scope.
 - [ ] Add browser/HTTP evidence collection and an independent verifier.
 - [ ] Export a validated JSON finding with redacted evidence.
 
-Acceptance: distinguish the vulnerable case from safe and functional controls with reproducible artifacts. No broad scanner or model training is required for this milestone.
+The local fixture and its scripted control verifier are available; the general collector, policy engine, and assessment-contract export remain pending. See the [lab instructions](../labs/invoice/README.md). Loopback development isolation is implemented; OS/container isolation is not.
+
+Acceptance: distinguish the vulnerable case from safe and functional controls with reproducible artifacts, then add the policy-gated collector and report contract. No broad scanner or model training is required for this milestone.
 
 ## Milestone 2: baseline system
 

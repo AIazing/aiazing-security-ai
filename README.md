@@ -2,7 +2,26 @@
 
 An open-source project to build a specialized AI model and assessment system that investigates authorized websites and APIs, verifies security findings, explains fixes, and exports reports.
 
-**Status: project definition and interface concept. There is no trained model, live scanner, or validated benchmark result yet.**
+**Status: the first local research fixture and its independent control checks are implemented. There is no trained model, general website scanner, or measured model benchmark yet.**
+
+## Run the first milestone
+
+Python 3.9+ is sufficient; no external packages, model API, or GPU are required.
+
+~~~sh
+python3 -m labs.invoice
+~~~
+
+This starts vulnerable and fixed invoice applications on loopback only. See the [lab instructions](labs/invoice/README.md) for synthetic accounts, ports, reset, and shutdown.
+
+To run independent controls and save sanitized evaluator evidence:
+
+~~~sh
+python3 -m labs.invoice.verify --output artifacts/invoice-lab-controls.json
+python3 -m unittest discover -v
+~~~
+
+The verifier starts its own temporary-port lab, checks both versions, resets and repeats, then shuts down. Its JSON is lab-control evidence, not a complete assessment report or AI discovery result.
 
 ## The intended experience
 
@@ -45,6 +64,8 @@ Use our own isolated deployments, not the projects' public demos. Pin each deplo
 - [Evaluation plan](docs/evaluation.md)
 - [Implementation roadmap](docs/roadmap.md)
 - [Delivery work plan and task breakdown](docs/work-plan.md)
+- [Local invoice lab](labs/invoice/README.md)
+- [First runtime decision](docs/decisions/0001-local-lab-runtime.md)
 - [Proposed lab catalog](benchmarks/catalog.json)
 - [Finding schema](schemas/finding.schema.json)
 - [Assessment request schema](schemas/assessment-request.schema.json)
@@ -53,7 +74,7 @@ Use our own isolated deployments, not the projects' public demos. Pin each deplo
 - [Illustrative finding](examples/finding.json)
 - [Interface concept](design/security-workspace.html)
 
-The interface concept contains fictional findings. It does not perform assessments.
+The interface concept contains fictional findings. It does not perform assessments. The separate local invoice lab is executable.
 
 ## Open source and paid service
 
@@ -61,11 +82,13 @@ The project-owned software is released under the MIT license. The intended commu
 
 The software license does not grant rights to third-party model weights, datasets, lab applications, or customer data. Track their terms separately.
 
-## First milestone
+## First implemented milestone
 
-Build one isolated lab, implement an evidence collector and an independent verifier for one access-control scenario, then export a structured finding. Establish this baseline before training a specialized model.
+The local invoice lab implements two synthetic accounts, one owned invoice, vulnerable/fixed detail access, deterministic reset, and independent controls. It binds only to loopback and exposes no reset or ground-truth HTTP endpoints. It is not an operating-system sandbox.
 
-No model provider, cloud account, API key, or paid compute is required to review this repository. There are currently no commands for live scanning or training.
+Next: implement the policy-gated assessment collector and contract-valid JSON reports before connecting model inference or training.
+
+No model provider, cloud account, API key, or paid compute is required to run this milestone. There are currently no commands for arbitrary website scanning or model training.
 
 ## Contributing
 

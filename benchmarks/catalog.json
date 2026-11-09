@@ -1,8 +1,15 @@
 {
   "version": 1,
-  "status": "planned",
-  "note": "Candidate lab sources, not installed targets or completed evaluations.",
+  "status": "local_fixture_available",
+  "note": "One project-owned local fixture is implemented. External lab integrations remain planned. No model evaluation has been performed.",
   "applications": [
+    {
+      "id": "invoice-access-control",
+      "source": "https://github.com/AIazing/aiazing-security-ai/tree/main/labs/invoice",
+      "focus": ["cross-account invoice access", "vulnerable and fixed controls"],
+      "fixture_version": "1",
+      "integration_status": "implemented_local"
+    },
     {
       "id": "juice-shop",
       "source": "https://github.com/juice-shop/juice-shop",

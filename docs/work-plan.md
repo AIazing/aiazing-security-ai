@@ -6,9 +6,9 @@ Build a specialized security transformer adaptation on an existing open-weight f
 
 The first release accepts an authorized website/API URL, investigates supported behaviors, verifies findings, recommends fixes, and exports results. Its initial research environment is isolated labs.
 
-Completed: product definition, architecture, input/process/output schemas and examples, evaluation strategy, and an illustrative dashboard.
+Completed: product definition, architecture, input/process/output schemas and examples, evaluation strategy, illustrative dashboard, and the first executable local invoice lab with independent controls.
 
-Not implemented: lab fixtures, scanning worker, independent verifiers, inference, training, production web application, or hosted infrastructure.
+Not implemented: the general scanning worker, assessment policy engine, contract-valid assessment reporting, model inference/training, production web application, or hosted infrastructure. The implemented invoice verifier is evaluator-side lab logic, not a general vulnerability verifier.
 
 This is a dependency-based plan, not a calendar commitment. Confirm hardware, compute budget, available engineering capacity, and security-review capacity before assigning dates or purchasing infrastructure.
 
@@ -26,6 +26,12 @@ This is a dependency-based plan, not a calendar commitment. Confirm hardware, co
 Phases 4 and 5 can proceed independently once their prerequisites exist. A limited pilot can use the unchanged self-hosted baseline if the adaptation does not improve results; it must be labeled accordingly. Model-release criteria and hosted-service security criteria are separate.
 
 ## Phase 1: reproducible lab
+
+LAB-01 through LAB-05 are implemented for the local loopback fixture. SYS-01 is recorded in [decision 0001](decisions/0001-local-lab-runtime.md). The lab instructions and verification commands are in [labs/invoice/README.md](../labs/invoice/README.md).
+
+Verification: 15 integration tests cover API controls, browser asset serving, reset, session isolation, request boundaries, evidence, and teardown. The CLI control run passed all eight controls across both variants and reproduced its results after reset. Interactive start/reset/quit also passed a smoke test. Artifacts are stored locally under the ignored artifacts directory. This verifies the lab's intended behavior, not an AI model's discovery capability.
+
+LAB-04 currently means loopback-only listeners, same-origin browser requests, no outbound server requests, and evaluator controls outside the HTTP API. Container/OS and tenant isolation remain future worker and hosted-service work.
 
 | ID | Work item | Deliverable and acceptance |
 | --- | --- | --- |
@@ -110,7 +116,7 @@ Scheduling, integrations, team workflows, and broader target types follow pilot 
 
 ## First implementation iteration
 
-Start with LAB-01 through LAB-05 and SYS-01. Its review should show:
+LAB-01 through LAB-05 and SYS-01 are complete for the local development boundary. The implemented review demonstrates:
 
 1. One command starts the isolated fixture and seeds two test accounts.
 2. The evaluator identifies record ownership without disclosing its answer to a model.

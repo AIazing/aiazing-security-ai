@@ -10,7 +10,7 @@ Use two controlled customer accounts and one synthetic owned record in a local f
 
 Record ownership is known to the evaluator. Validate the response contents or resulting application state; a status code or persuasive explanation is not enough.
 
-The fixture implementation and its verifier are not present yet.
+The fixture and deterministic independent control verifier are implemented in [labs/invoice](../labs/invoice/README.md). Run python3 -m labs.invoice.verify to check both variants and repeat after reset. These results establish the lab controls, not AI discovery performance. They are a precursor to the assessment collector and model baseline.
 
 ## Metrics
 
