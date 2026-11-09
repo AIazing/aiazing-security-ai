@@ -4,12 +4,14 @@
 
 Develop our own specialized transformer adaptation for website/API security investigation, evidence assessment, and remediation guidance.
 
+The initial delivery plan uses a self-hosted open-weight foundation and our trained adaptation. External AI APIs are not a dependency. Model and hardware selection are pending; see the [delivery work plan](work-plan.md).
+
 This repository does not contain trained weights and makes no claim of matching a frontier general-purpose model.
 
 ## Development stages
 
 1. Define reproducible tasks and verifiers.
-2. Evaluate candidate unchanged open-weight models and optional hosted baselines through the same tools.
+2. Evaluate candidate unchanged self-hosted open-weight models through the same tools.
 3. Collect reviewed traces containing successful checks, safe controls, false alarms, inconclusive attempts, and verified fixes.
 4. Train an initial supervised adaptation, potentially using LoRA.
 5. Compare against the exact unchanged base model and system configuration.

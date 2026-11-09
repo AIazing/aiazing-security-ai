@@ -28,7 +28,7 @@ Report counts, denominators, unknown outcomes, and run-to-run variation. Recall 
 
 ## Comparison protocol
 
-Compare unchanged base model, adapted model, and optional hosted baseline with the same tools, budgets, fixtures, and verifiers. Freeze evaluation before training. Do not expose answers or scenario names to the model.
+Compare the unchanged self-hosted base model and our adapted model with the same tools, budgets, fixtures, and verifiers. External AI APIs are not required by the initial plan. Freeze evaluation before training. Do not expose answers or scenario names to the model.
 
 Evaluate held-out applications and benign/fixed controls. Track prompt injection, credential leakage, and normal-function regressions alongside discovery results.
 

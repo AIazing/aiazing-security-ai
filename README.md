@@ -17,7 +17,7 @@ The initial target type is a web application or HTTP API. Repository, file, mobi
 
 ## Our model
 
-We aim to develop a specialized transformer model, initially by fine-tuning an existing open-weight model. We will compare it against unchanged base models and optional hosted-model baselines before claiming improvements. The base model and its redistribution terms have not been selected.
+We aim to develop a specialized transformer model, initially by fine-tuning an existing open-weight model hosted by us. We will compare it against unchanged self-hosted base models before claiming improvements. External AI APIs are not required by the initial plan. The base model and its redistribution terms have not been selected.
 
 Model responsibilities: choose relevant checks, interpret browser/request observations, assess evidence, and recommend fixes. Independent tools and verifiers establish whether the claimed security behavior occurred.
 
@@ -44,6 +44,7 @@ Use our own isolated deployments, not the projects' public demos. Pin each deplo
 - [Dataset specification](docs/dataset.md)
 - [Evaluation plan](docs/evaluation.md)
 - [Implementation roadmap](docs/roadmap.md)
+- [Delivery work plan and task breakdown](docs/work-plan.md)
 - [Proposed lab catalog](benchmarks/catalog.json)
 - [Finding schema](schemas/finding.schema.json)
 - [Assessment request schema](schemas/assessment-request.schema.json)

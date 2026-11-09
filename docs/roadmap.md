@@ -1,10 +1,13 @@
 # Implementation roadmap
 
+The [delivery work plan](work-plan.md) breaks this roadmap into task IDs, dependencies, deliverables, and acceptance criteria. The initial model path is a self-hosted open-weight baseline followed by our specialized adaptation; external AI APIs are not required.
+
 ## Current: definition
 
 - [x] Describe product, architecture, model strategy, and evaluation.
 - [x] Record candidate lab sources and finding output format.
 - [x] Preserve the illustrative dashboard concept.
+- [x] Define assessment input, process, output, and delivery work breakdown.
 - [ ] Select the first base-model candidates and deployment hardware.
 
 ## Milestone 1: one reproducible experiment
