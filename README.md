@@ -38,6 +38,7 @@ Use our own isolated deployments, not the projects' public demos. Pin each deplo
 ## Project map
 
 - [Product definition](docs/product.md)
+- [Input, process, and output contract](docs/input-process-output.md)
 - [System architecture](docs/architecture.md)
 - [Model development strategy](docs/model-strategy.md)
 - [Dataset specification](docs/dataset.md)
@@ -45,6 +46,9 @@ Use our own isolated deployments, not the projects' public demos. Pin each deplo
 - [Implementation roadmap](docs/roadmap.md)
 - [Proposed lab catalog](benchmarks/catalog.json)
 - [Finding schema](schemas/finding.schema.json)
+- [Assessment request schema](schemas/assessment-request.schema.json)
+- [Assessment result schema](schemas/assessment-result.schema.json)
+- [Example request](examples/assessment-request.json) and [illustrative result](examples/assessment-result.json)
 - [Illustrative finding](examples/finding.json)
 - [Interface concept](design/security-workspace.html)
 

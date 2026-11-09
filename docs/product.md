@@ -6,6 +6,8 @@ Initial users are developers and small security teams responsible for web applic
 
 The product evaluates application behavior, including interactions between users and roles. Source analysis may supplement it later.
 
+The [input, process, and output contract](input-process-output.md) specifies the customer request, execution stages, model responsibilities, and final result, including failed and rejected assessments.
+
 ## Assessment flow
 
 Project creation → domain ownership/authorization verification → scope configuration → discovery → investigation → verification → report → retest.

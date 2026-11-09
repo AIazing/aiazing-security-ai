@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "assessment_id": "ILLUSTRATIVE-REJECTED-001",
+  "target_url": "https://shop.example.com",
+  "status": "rejected",
+  "started_at": null,
+  "finished_at": "2026-11-09T19:00:00Z",
+  "coverage": {
+    "checks": [],
+    "limitations": ["No target testing occurred because the authorization record could not be resolved."]
+  },
+  "findings": [],
+  "usage": {"requests": 0, "duration_seconds": 0, "model_tokens": 0},
+  "errors": [{
+    "code": "AUTHORIZATION_NOT_FOUND",
+    "stage": "validate",
+    "message": "The supplied authorization reference is not valid for this project.",
+    "retryable": false
+  }],
+  "artifacts": [],
+  "illustrative": true
+}

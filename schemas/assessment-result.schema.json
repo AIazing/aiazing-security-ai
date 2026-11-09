@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AIazing Final Assessment Result v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "assessment_id", "target_url", "status", "started_at", "finished_at", "coverage", "findings", "usage", "errors", "artifacts", "illustrative"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "assessment_id": {"type": "string", "minLength": 1},
+    "target_url": {"type": ["string", "null"], "format": "uri", "pattern": "^https?://"},
+    "status": {"enum": ["completed", "partial", "failed", "cancelled", "rejected"]},
+    "started_at": {"type": ["string", "null"], "format": "date-time"},
+    "finished_at": {"type": "string", "format": "date-time"},
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["checks", "limitations"],
+      "properties": {
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["check_id", "status", "detail"],
+            "properties": {
+              "check_id": {"type": "string", "minLength": 1},
+              "status": {"enum": ["tested", "not_run", "inconclusive"]},
+              "detail": {"type": "string", "minLength": 1}
+            }
+          }
+        },
+        "limitations": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "findings": {"type": "array", "items": {"$ref": "finding.schema.json"}},
+    "usage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requests", "duration_seconds", "model_tokens"],
+      "properties": {
+        "requests": {"type": "integer", "minimum": 0},
+        "duration_seconds": {"type": "number", "minimum": 0},
+        "model_tokens": {"type": "integer", "minimum": 0}
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["code", "stage", "message", "retryable"],
+        "properties": {
+          "code": {"type": "string", "minLength": 1},
+          "stage": {"enum": ["validate", "prepare", "discover", "plan", "execute", "verify", "recommend", "report"]},
+          "message": {"type": "string", "minLength": 1},
+          "retryable": {"type": "boolean"}
+        }
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["format", "artifact_ref"],
+        "properties": {
+          "format": {"const": "json"},
+          "artifact_ref": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "illustrative": {"type": "boolean"}
+  },
+  "allOf": [{
+    "if": {"properties": {"status": {"const": "rejected"}}},
+    "then": {
+      "properties": {
+        "started_at": {"const": null},
+        "findings": {"maxItems": 0},
+        "coverage": {"properties": {"checks": {"maxItems": 0}}},
+        "errors": {"minItems": 1},
+        "usage": {"properties": {"requests": {"const": 0}, "model_tokens": {"const": 0}}}
+      }
+    },
+    "else": {
+      "properties": {
+        "target_url": {"type": "string"},
+        "started_at": {"type": "string"}
+      }
+    }
+  }]
+}

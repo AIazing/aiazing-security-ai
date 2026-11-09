@@ -1,5 +1,7 @@
 # System architecture
 
+See the [input, process, and output contract](input-process-output.md) for request/result schemas and the boundaries between model decisions, policy enforcement, and verification.
+
 ## Components
 
 | Component | Responsibility |

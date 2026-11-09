@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "assessment_id": "ILLUSTRATIVE-ASSESSMENT-001",
+  "target_url": "https://shop.example.com",
+  "status": "partial",
+  "started_at": "2026-11-09T19:00:00Z",
+  "finished_at": "2026-11-09T19:05:00Z",
+  "coverage": {
+    "checks": [
+      {"check_id": "invoice-cross-account-access", "status": "tested", "detail": "Fictional example of a vulnerable scenario with owner and non-owner controls."},
+      {"check_id": "password-reset-behavior", "status": "not_run", "detail": "Illustrative time budget expired before this planned check."}
+    ],
+    "limitations": [
+      "All data and execution states in this file are fictional; no scan was run.",
+      "Payments and administrative actions were outside scope.",
+      "One planned check was not run; this result does not certify site security."
+    ]
+  },
+  "findings": [{
+    "id": "ILLUSTRATIVE-001",
+    "title": "Customer can access another customer's invoice",
+    "target_url": "https://shop.example.com/api/invoices/synthetic-b",
+    "severity": "high",
+    "verification": "confirmed",
+    "expected_behavior": "Only the owning customer or an explicitly authorized role can read the invoice.",
+    "observed_behavior": "In this fictional example, Customer A received Customer B's synthetic invoice.",
+    "evidence": [{
+      "description": "Illustrative placeholder for redacted request/response and independent ownership controls.",
+      "artifact_ref": "illustrative://invoice-access",
+      "redacted": true
+    }],
+    "reproduction_steps": [
+      "Establish the synthetic record belongs to Customer B and confirm the owner's access.",
+      "Request the same record using Customer A's test session.",
+      "Compare the returned record with the independent ownership assertion."
+    ],
+    "recommendation": "Enforce invoice ownership on the server using the authenticated identity. Retest both cross-account denial and legitimate owner access.",
+    "limitations": ["Fictional example, not a discovered vulnerability."],
+    "retest": "not_run",
+    "illustrative": true
+  }],
+  "usage": {"requests": 28, "duration_seconds": 300, "model_tokens": 1800},
+  "errors": [{
+    "code": "TIME_BUDGET_EXHAUSTED",
+    "stage": "execute",
+    "message": "Illustrative run stopped before all planned checks completed.",
+    "retryable": true
+  }],
+  "artifacts": [{"format": "json", "artifact_ref": "illustrative://assessment-report"}],
+  "illustrative": true
+}

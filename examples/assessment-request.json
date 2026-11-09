@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "target": {
+    "type": "web_application",
+    "entry_url": "https://shop.example.com"
+  },
+  "authorization_ref": "example-auth-record-not-valid",
+  "environment": "public",
+  "mode": "account_based",
+  "scope": {
+    "allowed_origins": ["https://shop.example.com"],
+    "excluded_path_prefixes": ["/payments", "/admin"]
+  },
+  "limits": {
+    "max_requests": 100,
+    "max_requests_per_second": 1,
+    "max_duration_seconds": 300,
+    "max_model_tokens": 10000
+  },
+  "application_context": {
+    "description": "Fictional store used to illustrate the input contract.",
+    "expected_permissions": ["A customer can only view their own invoices."]
+  },
+  "test_accounts": [
+    {"account_id": "customer_a", "role": "customer", "credential_ref": "example-vault-ref-a"},
+    {"account_id": "customer_b", "role": "customer", "credential_ref": "example-vault-ref-b"}
+  ],
+  "export_formats": ["json"]
+}
