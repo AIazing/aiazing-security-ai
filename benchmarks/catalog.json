@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "status": "planned",
+  "note": "Candidate lab sources, not installed targets or completed evaluations.",
+  "applications": [
+    {
+      "id": "juice-shop",
+      "source": "https://github.com/juice-shop/juice-shop",
+      "focus": ["browser workflows", "web weaknesses"],
+      "revision": null,
+      "integration_status": "planned"
+    },
+    {
+      "id": "crapi",
+      "source": "https://github.com/OWASP/crAPI",
+      "focus": ["API authorization", "business logic"],
+      "revision": null,
+      "integration_status": "planned"
+    },
+    {
+      "id": "dvwa",
+      "source": "https://github.com/digininja/DVWA",
+      "focus": ["controlled web weakness examples"],
+      "revision": null,
+      "integration_status": "planned"
+    }
+  ],
+  "deployment_policy": "Use isolated deployments we control. Pin revisions before execution; do not test public demos."
+}

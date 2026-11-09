@@ -1,0 +1,23 @@
+{
+  "id": "ILLUSTRATIVE-001",
+  "title": "Customer can access another customer's invoice",
+  "target_url": "https://shop.example.com/api/invoices/synthetic-b",
+  "severity": "high",
+  "verification": "confirmed",
+  "expected_behavior": "Only the owning customer or an explicitly authorized role can read the invoice.",
+  "observed_behavior": "In this fictional example, Customer A's session returned the synthetic invoice owned by Customer B.",
+  "evidence": [{
+    "description": "Illustrative placeholder for sanitized request/response and evaluator ownership assertion; no real scan was run.",
+    "artifact_ref": "illustrative://invoice-access",
+    "redacted": true
+  }],
+  "reproduction_steps": [
+    "Create Customer A, Customer B, and a synthetic invoice owned by Customer B in an isolated fixture.",
+    "Request the synthetic invoice using Customer A's session.",
+    "Check that the returned record belongs to Customer B; compare against the legitimate owner control."
+  ],
+  "recommendation": "Enforce server-side invoice ownership checks derived from the authenticated identity. Retest cross-account denial and legitimate owner access.",
+  "limitations": ["Fictional format example, not a discovered vulnerability or benchmark result."],
+  "retest": "not_run",
+  "illustrative": true
+}

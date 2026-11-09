@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AIazing Security Finding",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "title", "target_url", "severity", "verification", "expected_behavior", "observed_behavior", "evidence", "reproduction_steps", "recommendation", "limitations", "retest", "illustrative"],
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "target_url": {"type": "string", "format": "uri"},
+    "severity": {"enum": ["informational", "low", "medium", "high", "critical", "unassessed"]},
+    "verification": {"enum": ["candidate", "needs_review", "confirmed", "observation"]},
+    "expected_behavior": {"type": "string", "minLength": 1},
+    "observed_behavior": {"type": "string", "minLength": 1},
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["description", "artifact_ref", "redacted"],
+        "properties": {
+          "description": {"type": "string", "minLength": 1},
+          "artifact_ref": {"type": "string", "minLength": 1},
+          "redacted": {"const": true}
+        }
+      }
+    },
+    "reproduction_steps": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "recommendation": {"type": "string", "minLength": 1},
+    "limitations": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "retest": {"enum": ["not_run", "resolved_for_tested_cases", "still_reproducible", "inconclusive"]},
+    "illustrative": {"type": "boolean"}
+  },
+  "allOf": [{
+    "if": {"properties": {"verification": {"const": "confirmed"}}},
+    "then": {"properties": {"evidence": {"minItems": 1}, "reproduction_steps": {"minItems": 1}}}
+  }]
+}

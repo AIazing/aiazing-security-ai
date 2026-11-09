@@ -1,0 +1,108 @@
+<div id="security-concept">
+<style>
+#security-concept { color-scheme:light dark; --paper:light-dark(#fff,#171c24); --back:light-dark(#f5f7fa,#10141b); --ink:light-dark(#182333,#edf2f8); --sub:light-dark(#536174,#afbdcf); --line:light-dark(#dce3ed,#354154); --accent:light-dark(#2457c5,#9cbbff); --soft:light-dark(#edf3ff,#23324e); --warn:light-dark(#87360d,#ffc492); --warn-bg:light-dark(#fff2e6,#402b20); font:14px/1.5 system-ui,sans-serif; color:var(--ink); }
+#security-concept * { box-sizing:border-box; }
+#security-concept .app { background:var(--back); border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+#security-concept header { display:flex; flex-wrap:wrap; align-items:center; gap:16px; background:var(--paper); padding:18px 100px 18px 22px; border-bottom:1px solid var(--line); }
+#security-concept .brand { font-weight:600; }
+#security-concept .small { font-size:12px; color:var(--sub); }
+#security-concept .shell { display:grid; grid-template-columns:150px minmax(0,1fr); }
+#security-concept aside { background:var(--paper); border-right:1px solid var(--line); padding:22px 14px; }
+#security-concept .navitem { padding:10px; margin-bottom:6px; color:var(--sub); border-radius:6px; }
+#security-concept .current { background:var(--soft); color:var(--accent); font-weight:600; }
+#security-concept main { padding:24px; min-width:0; }
+#security-concept h2 { font-size:22px; margin:4px 0; letter-spacing:-.5px; }
+#security-concept h3 { font-size:16px; margin:0 0 10px; }
+#security-concept p { margin:6px 0 12px; }
+#security-concept .heading { display:flex; gap:16px; justify-content:space-between; flex-wrap:wrap; align-items:center; }
+#security-concept .button { font:inherit; color:var(--ink); background:var(--paper); border:1px solid var(--line); border-radius:6px; padding:9px 12px; }
+#security-concept .steps { display:flex; flex-wrap:wrap; gap:10px 22px; margin:20px 0; padding:12px 0; border-block:1px solid var(--line); color:var(--sub); }
+#security-concept .steps strong { color:var(--ink); }
+#security-concept .scope { margin:12px 0 22px; color:var(--sub); }
+#security-concept .workspace { display:grid; grid-template-columns:minmax(190px,.85fr) minmax(0,1.4fr); gap:16px; align-items:start; }
+#security-concept .panel { background:var(--paper); border:1px solid var(--line); border-radius:8px; }
+#security-concept .panel-heading { padding:16px; border-bottom:1px solid var(--line); }
+#security-concept .panel-heading h3 { margin:0; }
+#security-concept .finding { width:100%; text-align:left; font:inherit; padding:16px; background:var(--paper); color:var(--ink); border:0; border-bottom:1px solid var(--line); display:block; }
+#security-concept .finding:last-child { border-bottom:0; border-radius:0 0 8px 8px; }
+#security-concept .finding[aria-pressed=true] { background:var(--soft); box-shadow:inset 3px 0 var(--accent); }
+#security-concept .finding-title { display:block; font-weight:600; margin:7px 0; }
+#security-concept .status { font-size:12px; display:inline-block; padding:2px 7px; background:var(--soft); color:var(--accent); border-radius:4px; }
+#security-concept .severity { color:var(--warn); background:var(--warn-bg); }
+#security-concept .detail { padding:18px; overflow-wrap:anywhere; }
+#security-concept .tabs { display:flex; flex-wrap:wrap; gap:8px; border-bottom:1px solid var(--line); margin:18px 0; }
+#security-concept .tab { font:inherit; color:var(--sub); background:transparent; border:0; border-bottom:2px solid transparent; padding:10px 6px; }
+#security-concept .tab[aria-selected=true] { color:var(--accent); border-color:var(--accent); }
+#security-concept pre { background:var(--back); color:var(--ink); padding:12px; border-radius:6px; white-space:pre-wrap; overflow-wrap:anywhere; font-size:12px; }
+#security-concept ol { padding-left:20px; }
+#security-concept footer { margin-top:18px; padding-top:14px; border-top:1px solid var(--line); color:var(--sub); font-size:12px; }
+#security-concept [hidden] { display:none!important; }
+@media(max-width:760px) { #security-concept .shell { grid-template-columns:1fr; } #security-concept aside { display:flex; flex-wrap:wrap; gap:8px; padding:10px; border-right:0; border-bottom:1px solid var(--line); } #security-concept aside .small { display:none; } #security-concept .navitem { margin:0; padding:6px; } #security-concept main { padding:16px; } }
+@media(max-width:560px) { #security-concept .workspace { grid-template-columns:1fr; } #security-concept header { padding-left:14px; } }
+</style>
+<div class="app" aria-label="Security assessment workspace concept">
+  <header><span class="brand">Domain security</span><span class="small">Interface concept · fictional findings</span></header>
+  <div class="shell">
+    <aside aria-label="Proposed navigation"><div class="small">WORKSPACE</div><div class="navitem">Projects</div><div class="navitem current">Findings</div><div class="navitem">Reports</div><div class="navitem">Settings</div></aside>
+    <main>
+      <div class="small">Projects / Example store</div>
+      <div class="heading"><div><h2>shop.example.com</h2><span class="small">Ownership verified · assessment complete</span></div><button type="button" class="button cursor-interaction" id="report-preview">Report preview</button></div>
+      <div class="steps"><span>✓ Verify domain</span><span>✓ Configure scope</span><span>✓ Assess</span><strong>Review &amp; fix</strong></div>
+      <p class="scope">Scope: shop.example.com · Two customer test accounts<br><span class="small">Public pages and customer access checks. Payments and admin actions excluded.</span></p>
+      <div class="workspace">
+        <section class="panel" aria-label="Example findings">
+          <div class="panel-heading"><h3>Findings <span class="small">3 examples</span></h3></div>
+          <button class="finding cursor-interaction" type="button" data-finding="invoice" aria-pressed="true"><span class="status severity">High</span> <span class="status">Confirmed</span><span class="finding-title">Another customer's invoice is accessible</span><span class="small">Invoice API · account permissions</span></button>
+          <button class="finding cursor-interaction" type="button" data-finding="reset" aria-pressed="false"><span class="status">Needs review</span><span class="finding-title">Password reset may reveal account existence</span><span class="small">Reset form · impact not confirmed</span></button>
+          <button class="finding cursor-interaction" type="button" data-finding="header" aria-pressed="false"><span class="status">Observation</span><span class="finding-title">Content security policy is absent</span><span class="small">Response headers · hardening guidance</span></button>
+        </section>
+        <section class="panel detail" aria-label="Finding detail">
+          <span class="small" id="finding-id">DEMO-001</span><h3 id="detail-title">Another customer's invoice is accessible</h3>
+          <p id="impact">A signed-in customer can read a test invoice belonging to another customer, exposing billing details.</p>
+          <div class="tabs" role="tablist" aria-label="Finding information">
+            <button type="button" class="tab cursor-interaction" role="tab" id="evidence-tab" aria-selected="true" aria-controls="evidence-panel" data-tab="evidence">Evidence</button>
+            <button type="button" class="tab cursor-interaction" role="tab" id="fix-tab" aria-selected="false" aria-controls="fix-panel" data-tab="fix">Recommended fix</button>
+          </div>
+          <div id="evidence-panel" role="tabpanel" aria-labelledby="evidence-tab"><p id="evidence-description">Customer A's session returns Customer B's invoice.</p><pre id="evidence-code">GET /api/invoices/test-invoice-b
+Session: [Customer A · redacted]
+
+HTTP 200
+invoice.owner = customer_b</pre><p class="small" id="evidence-limit">Demonstrated with test accounts and synthetic records.</p></div>
+          <div id="fix-panel" role="tabpanel" aria-labelledby="fix-tab" hidden><ol id="fix-list"><li>Enforce invoice ownership on the server.</li><li>Reject cross-account access.</li><li>Retest access using both test accounts.</li></ol><p class="small">Implementation guidance. An exact code patch requires repository access.</p></div>
+          <button type="button" class="button cursor-interaction" id="retest-preview">Preview retest</button><p id="interaction-status" class="small" aria-live="polite"></p>
+        </section>
+      </div>
+      <section class="panel detail" id="report-panel" aria-label="Example report contents" hidden style="margin-top:16px"><h3>Report contents</h3><p>Executive summary · approved scope · coverage and limitations · findings with evidence · recommended fixes · retest status</p><span class="small">Planned exports: PDF and JSON. This preview does not scan or export real data.</span></section>
+      <footer>Design preview only. All findings and assessment states are illustrative.</footer>
+    </main>
+  </div>
+</div>
+<script>
+(() => {
+  const root=document.getElementById('security-concept');
+  const findings={
+    invoice:{id:'DEMO-001',title:"Another customer's invoice is accessible",impact:'A signed-in customer can read a test invoice belonging to another customer, exposing billing details.',description:"The response contains Customer B's invoice while using Customer A's session.",evidence:'GET /api/invoices/test-invoice-b\nSession: [Customer A · redacted]\n\nHTTP 200\ninvoice.owner = customer_b',limit:'Demonstrated with supplied test accounts and synthetic records.',fix:['Authorize invoice access on the server using the signed-in customer’s identity.','Reject access when the customer does not own the requested invoice.','Test cross-account denial and legitimate owner access.']},
+    reset:{id:'DEMO-002',title:'Password reset may reveal account existence',impact:'Different responses may distinguish registered email addresses. Severity depends on the application and additional controls.',description:'Two supplied test addresses returned different messages. Timing consistency and abuse controls have not been evaluated.',evidence:'Registered test email → “Reset link sent”\nUnregistered test email → “Account not found”',limit:'Needs review: response differences observed; broader exploitation and impact are not established.',fix:['Return the same public message for registered and unregistered addresses.','Review timing differences and abuse protections.','Retest with controlled accounts and confirm legitimate reset emails still arrive.']},
+    header:{id:'DEMO-003',title:'Content security policy is absent',impact:'A content security policy can reduce the impact of some injection attacks. Its absence alone does not demonstrate an exploitable vulnerability.',description:'No enforcing Content-Security-Policy header was observed on the sampled HTML response.',evidence:'GET /\nHTTP 200\nContent-Type: text/html\nContent-Security-Policy: [absent]',limit:'Observation only. This check does not establish that script injection is possible.',fix:['Inventory legitimate scripts, styles, and resource sources.','Trial an appropriate policy in report-only mode and address breakages.','Enforce the policy after testing normal site behavior.']}
+  };
+  let selected='invoice', tab='evidence';
+  const valid=value=>Object.prototype.hasOwnProperty.call(findings,value);
+  function render(){
+    const f=findings[selected];
+    for(const [id,value] of Object.entries({'finding-id':f.id,'detail-title':f.title,'impact':f.impact,'evidence-description':f.description,'evidence-code':f.evidence,'evidence-limit':f.limit}))root.querySelector('#'+id).textContent=value;
+    root.querySelector('#fix-list').replaceChildren(...f.fix.map(text=>{const li=document.createElement('li');li.textContent=text;return li;}));
+    root.querySelectorAll('[data-finding]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.finding===selected)));
+    root.querySelectorAll('[data-tab]').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.tab===tab)));
+    root.querySelector('#evidence-panel').hidden=tab!=='evidence';root.querySelector('#fix-panel').hidden=tab!=='fix';
+  }
+  function restore(state){const s=state?.modelContent;if(valid(s?.finding))selected=s.finding;if(['evidence','fix'].includes(s?.tab))tab=s.tab;render();}
+  function save(){if(window.openai?.setWidgetState)window.openai.setWidgetState({modelContent:{finding:selected,tab},privateContent:null}).catch(()=>{});}
+  restore(window.openai?.widgetState);
+  window.addEventListener('openai:set_globals',event=>{if(event.detail?.globals?.widgetState)restore(event.detail.globals.widgetState);});
+  root.querySelectorAll('[data-finding]').forEach(b=>b.addEventListener('click',()=>{selected=b.dataset.finding;root.querySelector('#interaction-status').textContent='';render();save();}));
+  root.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{tab=b.dataset.tab;render();save();}));
+  root.querySelector('#report-preview').addEventListener('click',()=>{const panel=root.querySelector('#report-panel');panel.hidden=!panel.hidden;});
+  root.querySelector('#retest-preview').addEventListener('click',()=>{root.querySelector('#interaction-status').textContent='Retest design: repeat the original check, test variations, and verify legitimate behavior. No live test runs in this preview.';});
+})();
+</script>
+</div>
