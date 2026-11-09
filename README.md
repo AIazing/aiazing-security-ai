@@ -2,7 +2,7 @@
 
 An open-source project to build a specialized AI model and assessment system that investigates authorized websites and APIs, verifies security findings, explains fixes, and exports reports.
 
-**Status: the local invoice lab and policy-gated HTTP assessment engine are implemented, including verified findings, fix guidance, and contract-valid JSON reports. There is no trained model, general website scanner, or measured model benchmark yet.**
+**Status: the local lab, policy-gated HTTP assessment engine, and working local dashboard are implemented. You can observe runs, review verified findings and fix guidance, and download reports. There is no trained model, general website scanner, or measured model benchmark yet.**
 
 ## Run a local assessment
 
@@ -17,6 +17,16 @@ python3 -m venv .venv
 The command starts its own vulnerable/fixed lab instances, assesses them, exports sanitized reports and evidence, and shuts them down. The vulnerable fixture produces one confirmed finding; the fixed fixture produces none for the tested scenario. Each full run makes 10 target requests.
 
 See [assessment engine instructions](docs/assessment-engine.md) for scope, limits, failure states, and output. No model API, model download, GPU, or cloud service is required. The schema validator is the only direct external package.
+
+## Open the dashboard
+
+After setup:
+
+~~~sh
+.venv/bin/python -m security_ai.dashboard
+~~~
+
+Open http://127.0.0.1:8767 to run comparisons, watch live activity, inspect findings/evidence, download JSON, and see project progress. See [dashboard instructions](docs/dashboard.md) for options and limitations.
 
 ## Run the first milestone
 
@@ -80,6 +90,7 @@ Use our own isolated deployments, not the projects' public demos. Pin each deplo
 - [Delivery work plan and task breakdown](docs/work-plan.md)
 - [Local invoice lab](labs/invoice/README.md)
 - [Local assessment engine](docs/assessment-engine.md)
+- [Working local dashboard](docs/dashboard.md)
 - [First runtime decision](docs/decisions/0001-local-lab-runtime.md)
 - [Assessment engine decision](docs/decisions/0002-local-assessment-engine.md)
 - [Proposed lab catalog](benchmarks/catalog.json)
@@ -90,7 +101,7 @@ Use our own isolated deployments, not the projects' public demos. Pin each deplo
 - [Illustrative finding](examples/finding.json)
 - [Interface concept](design/security-workspace.html)
 
-The interface concept contains fictional findings. It does not perform assessments. The separate local invoice lab and HTTP assessment engine are executable.
+The earlier interface concept contains fictional findings. The separate local dashboard runs real lab assessments using the HTTP engine and displays actual saved reports.
 
 ## Open source and paid service
 

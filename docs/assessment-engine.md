@@ -2,6 +2,8 @@
 
 The first assessment engine is implemented for the controller-owned invoice lab. It uses deterministic collection and independent verification, not an AI model. It cannot scan arbitrary websites.
 
+For a working interface, use the [local dashboard](dashboard.md). It runs this same engine and shows real progress, findings, evidence, and exports.
+
 ## Setup
 
 From the repository root with Python 3.9+:

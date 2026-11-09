@@ -31,6 +31,8 @@ Acceptance: distinguish the vulnerable case from safe and functional controls wi
 - [ ] Measure precision, recall, abstention, cost, and boundary enforcement.
 - [ ] Build the web setup/findings flow and human-readable report export.
 
+The local dashboard now supports fixture selection, progress/cancellation, findings/evidence/fix review, saved JSON downloads, and project status. Customer URL/ownership setup, linked retests, and HTML/PDF exports remain pending. See [dashboard instructions](dashboard.md).
+
 ## Milestone 3: specialized model
 
 - [ ] Curate reviewed episodes and freeze held-out evaluation.

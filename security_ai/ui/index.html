@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AIazing · Security workspace</title>
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/"><span class="brand-mark">A</span><span>AIazing<span class="brand-sub">Security research</span></span></a>
+      <div class="sidebar-label">WORKSPACE</div>
+      <a class="nav-link selected" href="#overview"><span aria-hidden="true">◫</span> Overview</a>
+      <a class="nav-link" href="#assessments"><span aria-hidden="true">≡</span> Assessments</a>
+      <a class="nav-link" href="#roadmap"><span aria-hidden="true">◇</span> Project roadmap</a>
+      <div class="sidebar-note"><span class="dot"></span> Local development<p>Your lab, evidence, and reports stay on this machine.</p></div>
+      <a class="repo-link" href="https://github.com/AIazing/aiazing-security-ai" target="_blank" rel="noopener noreferrer">View repository ↗</a>
+    </aside>
+    <div class="page">
+      <header class="topbar"><span>Research workspace <span class="slash">/</span> Overview</span><span class="local-tag">Local prototype</span></header>
+      <main id="overview">
+        <div class="page-heading"><div><p class="eyebrow">BUILD, TEST, VERIFY</p><h1>Security workspace</h1><p class="subtitle">See what the tool is doing, what it found, and what we're building next.</p></div><span class="outline-tag" id="connection-state">Connecting…</span></div>
+        <div class="notice"><span class="notice-symbol" aria-hidden="true">i</span><div><strong>The assessment engine works. The AI model comes next.</strong><p>This dashboard runs real checks against our controlled invoice lab. It does not scan arbitrary websites or use an AI service.</p></div></div>
+        <section class="panel run-panel" aria-labelledby="run-heading">
+          <div class="panel-heading"><div><p class="eyebrow">LIVE ASSESSMENT</p><h2 id="run-heading">Watch the engine work</h2></div><span id="run-status" class="badge">Ready</span></div>
+          <form id="run-form">
+            <label>Application<select id="fixture"><option value="both">Compare vulnerable + fixed</option><option value="vulnerable">Vulnerable invoice lab</option><option value="fixed">Fixed invoice lab</option></select></label>
+            <label class="budget-field">Request limit per assessment<input id="request-limit" type="number" min="1" max="100" value="30" required></label>
+            <div class="form-actions"><button class="button primary" type="submit" id="run-button">Run assessment</button><button class="button" type="button" id="cancel-button" hidden>Stop run</button></div>
+          </form>
+          <p id="run-message" class="small" role="status">Each comparison starts fresh lab instances and shuts them down when finished.</p>
+          <div id="request-error" class="error-message" role="alert" hidden></div>
+          <div class="activity-grid">
+            <div><div class="section-caption"><span>Execution stages</span><span id="run-count" class="muted">No active run</span></div>
+              <ol class="steps"><li data-stage="validate"><span class="step-number">1</span><span>Authorize</span></li><li data-stage="collect"><span class="step-number">2</span><span>Collect</span></li><li data-stage="verify"><span class="step-number">3</span><span>Verify</span></li><li data-stage="report"><span class="step-number">4</span><span>Export</span></li></ol>
+              <p class="small muted" id="stage-caption">Stages highlight when reached. Incomplete runs preserve their limits and errors.</p>
+            </div>
+            <div class="event-panel"><div class="section-caption"><span>Activity</span><span class="mono muted">LIVE</span></div><ol id="event-log" aria-label="Assessment activity"><li class="empty-event">Start a run to see actual requests and verification stages.</li></ol></div>
+          </div>
+        </section>
+        <div class="content-grid">
+          <div class="results-column">
+            <section class="panel" id="assessments" aria-labelledby="history-heading">
+              <div class="panel-heading"><div><p class="eyebrow">SAVED RESULTS</p><h2 id="history-heading">Recent assessments</h2></div><span id="history-count" class="small muted"></span></div>
+              <div class="table-wrap"><table><thead><tr><th>Assessment</th><th>Status</th><th>Findings</th><th>Requests</th><th><span class="sr-only">Review</span></th></tr></thead><tbody id="history"></tbody></table></div>
+              <p id="empty-history" class="empty-state" hidden>No reports yet. Run the comparison to create your first results.</p>
+            </section>
+            <section class="panel report-panel" id="report-panel" aria-labelledby="report-heading">
+              <div class="panel-heading"><div><p class="eyebrow">EVIDENCE &amp; REMEDIATION</p><h2 id="report-heading">Assessment details</h2></div><span id="report-status" class="badge" hidden></span></div>
+              <p id="report-placeholder" class="empty-state">Select a saved assessment to review its findings and supporting evidence.</p>
+              <div id="report-content" hidden>
+                <div class="report-meta"><span id="report-target" class="mono"></span><span id="report-date" class="small muted"></span></div>
+                <div class="report-summary" id="report-summary"></div>
+                <div id="report-outcome" class="outcome"></div>
+                <div id="finding-list"></div>
+                <div class="tabs" role="tablist" aria-label="Report detail">
+                  <button class="tab active" type="button" role="tab" id="evidence-tab" aria-controls="evidence-panel" aria-selected="true" data-tab="evidence">Evidence</button>
+                  <button class="tab" type="button" role="tab" id="fix-tab" aria-controls="fix-panel" aria-selected="false" data-tab="fix">Recommended fix</button>
+                  <button class="tab" type="button" role="tab" id="coverage-tab" aria-controls="coverage-panel" aria-selected="false" data-tab="coverage">Coverage &amp; limits</button>
+                </div>
+                <div id="evidence-panel" role="tabpanel" aria-labelledby="evidence-tab"></div>
+                <div id="fix-panel" role="tabpanel" aria-labelledby="fix-tab" hidden></div>
+                <div id="coverage-panel" role="tabpanel" aria-labelledby="coverage-tab" hidden></div>
+                <div class="download-row"><a id="download-report" class="button" download>Download report JSON</a><a id="download-evidence" class="text-link" download>Download evidence</a></div>
+              </div>
+            </section>
+          </div>
+          <aside class="panel roadmap-panel" id="roadmap" aria-labelledby="roadmap-heading">
+            <div class="panel-heading"><div><p class="eyebrow">PROJECT PROGRESS</p><h2 id="roadmap-heading">Where we are</h2></div></div>
+            <p class="roadmap-intro">A working local research prototype. Model integration and training are still ahead.</p>
+            <ol id="roadmap-list"></ol>
+            <div class="next-step"><span class="eyebrow">UP NEXT</span><p id="next-step"></p></div>
+          </aside>
+        </div>
+        <footer>Real lab observations · Synthetic customer data · No trained model yet</footer>
+      </main>
+    </div>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>

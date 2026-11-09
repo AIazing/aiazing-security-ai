@@ -1,0 +1,44 @@
+{
+  "name": "AIazing Security AI",
+  "summary": "Local lab and verified HTTP assessments work. AI inference and training are not connected.",
+  "current_focus": "Local dashboard for observing assessments and reviewing evidence.",
+  "next_step": "Define the model observation/action interface and self-hosted inference adapter.",
+  "phases": [
+    {
+      "id": "lab",
+      "title": "Reproducible testing lab",
+      "status": "ready",
+      "detail": "Two synthetic accounts, vulnerable/fixed applications, reset, and independent controls."
+    },
+    {
+      "id": "engine",
+      "title": "Assessment engine",
+      "status": "partial",
+      "detail": "HTTP collection, authorization, limits, verification, and JSON exports work for the lab. Browser containment and OS isolation remain."
+    },
+    {
+      "id": "model",
+      "title": "Self-hosted model baseline",
+      "status": "not_started",
+      "detail": "Model interface, base-model/hardware selection, and local inference are next."
+    },
+    {
+      "id": "dashboard",
+      "title": "Web research preview",
+      "status": "partial",
+      "detail": "Local dashboard supports live assessments, findings, evidence, and downloads. Customer accounts and production hosting remain."
+    },
+    {
+      "id": "training",
+      "title": "Our specialized model",
+      "status": "not_started",
+      "detail": "Reviewed training episodes, fine-tuning, and held-out comparisons follow the baseline."
+    },
+    {
+      "id": "pilot",
+      "title": "Hosted customer pilot",
+      "status": "not_started",
+      "detail": "Customer authorization, tenant isolation, operations, and a limited authorized pilot."
+    }
+  ]
+}

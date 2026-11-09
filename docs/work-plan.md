@@ -6,7 +6,7 @@ Build a specialized security transformer adaptation on an existing open-weight f
 
 The first release accepts an authorized website/API URL, investigates supported behaviors, verifies findings, recommends fixes, and exports results. Its initial research environment is isolated labs.
 
-Completed: product definition, architecture, input/process/output schemas and examples, evaluation strategy, illustrative dashboard, local invoice lab, and the policy-gated HTTP assessment slice with independent verification and validated JSON exports.
+Completed: product definition, architecture, input/process/output contracts, evaluation strategy, local invoice lab, policy-gated HTTP assessments, validated JSON exports, and a working local dashboard with live activity and report review.
 
 Not implemented: general crawling, browser automation, model inference/training, production web application, hosted authorization/storage, or OS-level worker isolation. The implemented verifier covers the controlled invoice scenario, not arbitrary vulnerabilities.
 
@@ -79,6 +79,12 @@ Hardware allocation and paid compute need a concrete estimate before execution. 
 Baseline measurements must distinguish discovery from merely explaining a supplied finding. Keep tool permissions, context, request limits, and verifiers fixed when comparing models.
 
 ## Phase 4: web research preview
+
+The [local dashboard](dashboard.md) implements lab selection, live stages/request events, cancellation, findings/evidence/fix/coverage review, saved report history, downloads, and a repository-maintained roadmap. It runs the existing engine rather than simulated progress.
+
+WEB-01 is limited to controller-owned fixtures; customer URL/ownership/account setup remains pending. WEB-02 and WEB-03 work for the local slice. WEB-04 has JSON download; linked retest jobs remain pending. WEB-05 human-readable exports are still pending. This is not a shared or production deployment.
+
+Verification: 50 backend/engine/lab tests passed. Real-browser checks covered a live comparison, tabs, JSON download, 390px/320px layouts, partial outcomes, cancellation, and no JavaScript exceptions.
 
 | ID | Work item | Deliverable and acceptance |
 | --- | --- | --- |

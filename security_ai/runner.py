@@ -57,7 +57,11 @@ class AssessmentRunner:
         self.expected_invoice = expected_invoice
         self.artifacts = artifacts
 
-    def run(self, document, cancellation=None):
+    def run(self, document, cancellation=None, on_progress=None):
+        def emit(stage, **details):
+            if on_progress is not None:
+                on_progress({"stage": stage, **details})
+
         result = {
             "schema_version": "1.0",
             "assessment_id": "assessment-" + uuid.uuid4().hex,
@@ -78,13 +82,17 @@ class AssessmentRunner:
         transport = budget = None
         evidence = []
         try:
+            emit("validate")
             policy = compile_policy(document, self.context, self.registry)
             result["target_url"] = policy.grant.origin
             result["started_at"] = timestamp()
             budget = Budget(policy, cancellation)
             budget.check()
-            transport = LabTransport(policy, self.registry, budget)
+            emit("prepare")
+            transport = LabTransport(policy, self.registry, budget, on_progress)
+            emit("collect")
             case = collect(transport, policy.account_ids)
+            emit("verify")
             outcome = verify(case, self.expected_invoice)
             budget.check()
             if outcome == "inconclusive":
@@ -132,5 +140,8 @@ class AssessmentRunner:
                     max(0, budget.clock() - budget.started), 6
                 )
             result["finished_at"] = timestamp()
+        emit("report")
         self.artifacts.write(result, evidence)
+        emit("finished", status=result["status"], requests=result["usage"]["requests"],
+             assessment_id=result["assessment_id"])
         return result

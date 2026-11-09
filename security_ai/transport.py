@@ -39,10 +39,11 @@ class Observation:
 
 
 class LabTransport:
-    def __init__(self, policy, registry, budget):
+    def __init__(self, policy, registry, budget, on_observation=None):
         self.policy = policy
         self.budget = budget
         self.registry = registry
+        self.on_observation = on_observation
         self.observations = []
         self.tokens = {}
         self.protected = set()
@@ -118,6 +119,16 @@ class LabTransport:
                 method, path, actor or "anonymous", response.status, cleaned
             )
             self.observations.append(observation)
+            if self.on_observation is not None:
+                self.on_observation({
+                    "stage": "collect",
+                    "trace_id": observation.trace_id,
+                    "method": observation.method,
+                    "path": observation.path,
+                    "actor": observation.actor,
+                    "status": observation.status,
+                    "requests": self.budget.requests,
+                })
             return observation
         except (OSError, http.client.HTTPException):
             # Exception messages can include target-controlled values.

@@ -13,3 +13,5 @@ Start with the first milestone in [docs/roadmap.md](docs/roadmap.md). Keep chang
 The local fixture uses Python 3.9+ with no external runtime packages. The assessment engine additionally requires the packages in requirements.txt. Follow [assessment setup](docs/assessment-engine.md), then run .venv/bin/python -m unittest discover -v for the full suite. Fixture-only tests can run without dependencies using python3 -m unittest tests.test_invoice_lab -v.
 
 Tests bind temporary loopback ports. See [decision 0001](docs/decisions/0001-local-lab-runtime.md) and [decision 0002](docs/decisions/0002-local-assessment-engine.md) for runtime scope and limitations.
+
+For optional browser checks, install requirements-dev.txt and run .venv/bin/python -m tests.browser_dashboard. This uses a fresh browser profile and temporary local dashboard; screenshots stay in artifacts/dashboard-preview. See [dashboard verification](docs/dashboard.md).

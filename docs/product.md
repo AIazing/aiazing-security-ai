@@ -8,6 +8,8 @@ The product evaluates application behavior, including interactions between users
 
 The [input, process, and output contract](input-process-output.md) specifies the customer request, execution stages, model responsibilities, and final result, including failed and rejected assessments.
 
+An executable [local dashboard](dashboard.md) now covers the controlled-lab preview: real assessment progress, cancellation, saved findings/evidence, fix guidance, JSON downloads, and project roadmap. The customer-facing URL/ownership setup and hosted product remain future work.
+
 ## Assessment flow
 
 Project creation → domain ownership/authorization verification → scope configuration → discovery → investigation → verification → report → retest.
